@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE personas [
+    <!ELEMENT personas (datospersonales+, datoslaborales)>
+    <!ELEMENT datospersonales (nombre, apellidos, direccion, telefono, email?, foto, pie)> <!--Elemento con elementos dentro.  ? puede aparecer de 0 o 1 vez, * de 0 a muchas veces, + de 1 a muchas veces, si se separan con | en vez de con , son elementos excluyentes (aparece solo un elemento de la lista de elementos)-->
+    <!ELEMENT nombre (#PCDATA)> <!--Elemento con datos-->
+    <!ELEMENT apellidos (#PCDATA)>
+    <!ELEMENT direccion (#PCDATA)> <!--Si el elemento se repite, solo hay que ponerlo una vez-->
+    <!ELEMENT telefono (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT foto EMPTY> <!--Elemento vacío-->
+    <!ELEMENT pie (#PCDATA)>
+    <!ELEMENT datoslaborales (empresa, direccion, codigopostal)>
+    <!ELEMENT empresa (#PCDATA)>
+    <!ELEMENT codigopostal (#PCDATA)>
+
+    <!--Definición de atributos-->
+    <!ATTLIST datospersonales edad CDATA #REQUIRED> <!--con esto le indicamos que el atributo debe ser obligatorio, con #IMPLIED que el atributo no es necesario y con #FIXED que el valor tiene que ser fijo al que pongamos en esta línea-->
+    <!ATTLIST foto src CDATA "./nodisponible.jpg"> <!--aquí le damos valor por defecto, pero no es obligatorio ponerlo-->
+
+    <!--Definición de entidades-->
+    <!ENTITY copyright "@Fernando"> <!--Sustituye el valor copyright por Fernando en todos los bloques-->
+    <!ENTITY anyo "2022">
+]>
+
+<personas>
+    <datospersonales edad="19">
+        <nombre>Pedro</nombre>
+        <apellidos>Ramírez</apellidos>
+        <direccion>Calle Ancha</direccion>
+        <telefono>651345789</telefono>
+        <email>pedroramirez@gmail.com</email>
+        <foto src="" />
+        <pie>&copyright; &anyo;</pie>
+    </datospersonales>
+    <datospersonales edad="22">
+        <nombre>Luis</nombre>
+        <apellidos>Montero</apellidos>
+        <direccion>Calle Tetuán</direccion>
+        <telefono>672341298</telefono>
+        <foto src="" />
+        <pie>&copyright; &anyo;</pie>
+    </datospersonales>
+    <datoslaborales>
+        <empresa>Empresa S.A.</empresa>
+        <direccion>ccc</direccion>
+        <codigopostal>41008</codigopostal>
+    </datoslaborales>
+</personas>

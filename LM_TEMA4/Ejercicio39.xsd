@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xsd que equivale al Ejercicio5.dtd -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="persona">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="xs:string" />
+                <xs:element name="apellidos" type="xs:string" />
+                <xs:element name="correo" type="xs:string" />
+                <xs:element name="twitter">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="@[a-z,_]{3,}"></xs:pattern> <!--3, al menos 3 caracteres // 3,10 debe tener entre 3 y 10 caracteres-->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

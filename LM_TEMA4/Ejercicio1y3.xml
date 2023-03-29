@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE persona SYSTEM "./Ejercicio5.dtd">-->
+
+<!--Ejercicio 1-->
+<persona xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Ejercicio39.xsd">
+    <nombre>Claudia</nombre>
+    <apellidos>Palazón Gómez</apellidos>
+    <correo>98claudia@gmail.com</correo>
+    <twitter>@claupgomez_</twitter>
+</persona>

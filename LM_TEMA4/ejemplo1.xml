@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persona xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./ejemplo1.xsd">
+    <nombre>Pedro</nombre>
+    <apellidos>Ortiz Pérez</apellidos>
+    <fecha_nacimiento>
+        <dia>19</dia>
+        <mes>4</mes>
+        <año>2001</año>
+        <diaSemana>Lunes</diaSemana>
+    </fecha_nacimiento>
+    <direccion>
+        <calle>Principal</calle>
+        <cp>41000</cp>
+    </direccion>
+    <dni>00000000T</dni>
+    <edad nacionalidad="E">55</edad>
+</persona>

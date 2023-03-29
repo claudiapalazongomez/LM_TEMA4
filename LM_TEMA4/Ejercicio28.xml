@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE listaCompra [
+ <!ELEMENT listaCompra (leche, pan)>
+ <!ELEMENT leche EMPTY>
+ <!ELEMENT pan EMPTY>
+ <!ATTLIST leche cantidad CDATA #REQUIRED>
+ <!ATTLIST pan cantidad CDATA #REQUIRED>
+]>-->
+<listaCompra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Ejercicio44.xsd">
+ <leche cantidad="12 litros" />
+ <pan cantidad="3 barras de cuarto" />
+</listaCompra>

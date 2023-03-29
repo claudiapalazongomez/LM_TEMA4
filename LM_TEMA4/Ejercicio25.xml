@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE persona [
+ <!ELEMENT persona EMPTY>
+ <!ATTLIST persona dni CDATA #IMPLIED> es opcional
+]>-->
+<persona dni="03141592E" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Ejercicio41.xsd"  />

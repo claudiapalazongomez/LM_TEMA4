@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--elemento xml-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"> <!--elemento esquema: se define el espacio de nombres (vocab en el que están todas las etiquetas que usamos-->
+    <xs:element name="persona">
+        <xs:complexType> <!--es complejo porque tiene otros elementos anidados-->
+            <xs:sequence> <!--te define el tipo de aparición y el orden en el que van a tener los demás elementos // si ponemos choice (es como en el dtd persona(nombre|apellidos), es decir, tiene que aparecer alguno; y all pero da igual el orden-->
+                <xs:element name="nombre" type="xs:string" />
+                <xs:element name="apellidos" type="xs:string" />
+                <xs:element name="telefono" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

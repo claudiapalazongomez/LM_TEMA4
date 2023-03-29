@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!--Utilizaremos tres tipos personalizados: uno que englobará los dos elementos grupo y disco,
+    para en el siguiente paso, utilizar otros dos para poder dividir ambos elementos y poderlos
+    utilizar en distintas partes dentro del esquema y que así, no nos dé fallo-->
+    <xs:element name="discos" type="grupovsdisco"></xs:element>
+    <xs:complexType name="grupovsdisco">
+        <xs:sequence>
+            <xs:element name="grupo" type="teamgrupo" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="disco" type="teamdiscos" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--Definimos los elementos que van dentro de grupo y su propio atributo nom-->
+    <xs:complexType name="teamgrupo">
+        <xs:sequence>
+            <xs:element name="nombre" type="caracteres" />
+            <xs:element name="miembro" maxOccurs="3" type="caracteres" /> <!--este elemento aparece 3
+            veces-->
+            <xs:element name="nacionalidad" minOccurs="0" type="caracteres" /> <!--elemento opcional-->
+            <xs:choice minOccurs="0"> <!--elección entre web y email o calle y localidad, ya que no
+                nos permiten elegir ambas a la vez // además, podrán no aparecer-->
+                <xs:sequence>
+                    <xs:element name="web" type="dominio" />
+                    <xs:element name="email" type="dominio" />
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="calle" type="caracteres" />
+                    <xs:element name="localidad" type="caracteres" />
+                </xs:sequence>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="nom" type="xs:string" use="required" /> <!--el atributo debe estar presente siempre-->
+    </xs:complexType>
+
+    <!--Definimos las restricciones de este bloque-->
+    <!--Restricciones para el email y la web con su dominio ponprecioamimusica.org obligatorio-->
+    <xs:simpleType name="dominio">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z]*[./]*@?ponprecioamimusica.org[/a-z]*" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--Definimos los elementos que van dentro de disco y los atributos que aparecen-->
+    <xs:complexType name="teamdiscos">
+        <xs:sequence>
+            <xs:element name="interprete">
+                <xs:complexType>
+                    <xs:attribute name="nom" type="xs:string" use="required" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="titulo" type="caracteres" />
+            <xs:element name="discografica" minOccurs="0" type="nombre_discografica" default="CBS" /> <!--no
+            todos los elementos disco tienen discográfica, PERO, si aparece, su valor predeterminado
+            será CBS-->
+            <xs:element name="anio">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="digitos"> <!--para poder implantar un simpleType, debemos definir una extension-->
+                            <xs:attribute name="mes" type="meses_anio" use="optional" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="stock" type="cantidad" />
+        </xs:sequence>
+        <xs:attribute name="precio" type="decimal" use="required" /> <!--el atributo debe estar presente siempre-->
+    </xs:complexType>
+
+    <!--Definimos las restricciones de este bloque-->
+    <!--Necesitamos limitar un conjunto de valores aceptables para el nombre de la discográfica:
+    utilizaremos enumeration-->
+    <xs:simpleType name="nombre_discografica">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CBS" />
+            <xs:enumeration value="Sony" />
+            <xs:enumeration value="SIRE" />
+            <xs:enumeration value="OTRAS" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--Definir los dígitos máximos y los meses del año-->
+    <xs:simpleType name="digitos">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1000" />
+            <xs:maxInclusive value="9999" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="meses_anio">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="enero" />
+            <xs:enumeration value="febrero" />
+            <xs:enumeration value="marzo" />
+            <xs:enumeration value="abril" />
+            <xs:enumeration value="mayo" />
+            <xs:enumeration value="junio" />
+            <xs:enumeration value="julio" />
+            <xs:enumeration value="agosto" />
+            <xs:enumeration value="septiembre" />
+            <xs:enumeration value="octubre" />
+            <xs:enumeration value="noviembre" />
+            <xs:enumeration value="diciembre" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--Stock: número entero, mayor o igual a 0 y como máximo 200-->
+    <xs:simpleType name="cantidad">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="200" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--Atributo precio con dos decimales-->
+    <xs:simpleType name="decimal">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2" />
+            <xs:pattern value="\d+\.\d{2}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--Restricciones para ambos bloques-->
+    <!--Los campos de texto que no tengan otra regla no pueden superar los 50 caracteres-->
+    <xs:simpleType name="caracteres">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE cuadros [
+ <!ELEMENT cuadros (cuadro*)>
+ <!ELEMENT cuadro EMPTY>
+ <!ATTLIST cuadro titulo CDATA #REQUIRED> los ID no admiten espacios en blanco
+ <!ATTLIST cuadro autor CDATA #REQUIRED>
+]>-->
+<cuadros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Ejercicio43.xsd">
+ <cuadro titulo="Adán y Eva" autor="Alberto Durero" />
+ <cuadro titulo="Adán y Eva" autor="Lucas Cranach, el viejo" />
+</cuadros>
